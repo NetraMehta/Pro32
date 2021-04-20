@@ -6,7 +6,9 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var backgroundImg;
 
-var backgroundImg ;
+var bg;
+
+var hour;
 
 function preload() {
     getBackgroundImg();
@@ -24,6 +26,11 @@ function draw(){
         background(backgroundImg);
     }
 
+    textSize(20);
+    textFont("comic sans ms");
+    fill("orange");
+    text("Time: "+hour, 50, 50);
+
     Engine.update(engine);
 }
 
@@ -31,7 +38,7 @@ async function getBackgroundImg(){
     var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
     var responseJson = await response.json();
     var datetime = responseJson.datetime;
-    var hour = datetime.slice(11, 13);
+    hour = datetime.slice(11, 13);
     console.log(hour);
     if(hour >= 04 && hour <= 06){
         bg = "sunrise1.png";
